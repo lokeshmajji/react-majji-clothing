@@ -1,4 +1,4 @@
-import Button from "../../components/button/button.component";
+import Button, { BUTTON_CLASS_TYPES } from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
 import {
   signInWithGooglePopUp,
@@ -75,7 +75,7 @@ const SignInForm = () => {
 
         <div className="buttons-container">
           <Button type="submit">Sign In</Button>
-          <Button buttonType={"google"} onClick={signInWithGoogle}>
+          <Button buttonType={BUTTON_CLASS_TYPES.google} onClick={signInWithGoogle}>
             Google SignIn
           </Button>
         </div>

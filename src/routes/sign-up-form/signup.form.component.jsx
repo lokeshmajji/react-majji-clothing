@@ -4,7 +4,7 @@ import {
   createUserDocFromAuth,
 } from "../../utils/firebase/firebase.util";
 import FormInput from "../../components/form-input/form-input.component";
-import Button from "../../components/button/button.component";
+import Button, { BUTTON_CLASS_TYPES } from "../../components/button/button.component";
 
 import "./signup.form.styles.scss";
 
@@ -86,7 +86,7 @@ const SignUpForm = () => {
           onChange={handleOnChange}
         />
 
-        <Button buttonType="inverted" type="submit">
+        <Button buttonType={BUTTON_CLASS_TYPES.inverted} type="submit">
           Sign Up
         </Button>
       </form>
