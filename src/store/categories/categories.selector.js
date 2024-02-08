@@ -7,9 +7,9 @@ export const categoryReducerSelector = (state) => {
 
 export const categoryArraySelector = createSelector(
     [categoryReducerSelector],
-    (categories) => {
+    (categoriesSlice) => {
         console.log("selector 2: i don't know why we are doing this")
-        return categories.categoryArray
+        return categoriesSlice.categoryArray
     }
 )
 
@@ -23,6 +23,11 @@ export const categoryMapSelector = createSelector(
           return acc;
         }, {});
       }
+)
+
+export const categoryIsLoadingSelector = createSelector(
+    [categoryReducerSelector],
+    (categoriesSlice) => categoriesSlice.isLoading
 )
 
 

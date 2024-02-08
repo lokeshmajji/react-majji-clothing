@@ -6,18 +6,18 @@ import Category from "../../components/category/category.component";
 import Categories from "../../components/categories/categories.component";
 
 import { getCollectionAndDocuments } from "../../utils/firebase/firebase.util";
-import { setCategories } from "../../store/categories/categories.action";
+import {
+  fetchCategoriesAsync,
+  setCategories,
+} from "../../store/categories/categories.action";
 
 import "./shop.styles.scss";
 
 const Shop = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
+  
   useEffect(() => {
-    const getCategories = async () => {
-      const categoriesArray = await getCollectionAndDocuments();
-      dispatch(setCategories(categoriesArray));
-    };
-    getCategories();
+    dispatch(fetchCategoriesAsync());
   }, []);
 
   return (
