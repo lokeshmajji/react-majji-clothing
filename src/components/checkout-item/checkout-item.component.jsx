@@ -1,20 +1,21 @@
 import "./checkout-item.styles.scss";
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import { addCartItem, clearCartItem, removeCartItem } from "../../store/cart/cart.action";
+import { selectCartItems } from "../../store/cart/cart.selector";
 
 const CheckoutItem = ({ item }) => {
   const { name, imageUrl, quantity, price } = item;
-  const { cartQuantityUpdate, removeCartItem } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems)
+  const dispatch = useDispatch()
 
   const handleQtyUp = () => {
-    console.log("UP");
-    cartQuantityUpdate(item, "INCREASE");
+    dispatch(addCartItem(cartItems, item))
   };
   const handleQtyDown = () => {
-    cartQuantityUpdate(item, "DECREASE");
+    dispatch(removeCartItem(cartItems, item))
   };
-  const handleRemoveItem = () => {
-    removeCartItem(item);
+  const handleClearItem = () => {
+    dispatch(clearCartItem(cartItems, item));
   };
   return (
     <div className="checkout-item-container">
@@ -33,7 +34,7 @@ const CheckoutItem = ({ item }) => {
         </span>
       </div>
       <span className="price">{price}</span>
-      <div className="remove-button" onClick={handleRemoveItem}>
+      <div className="remove-button" onClick={handleClearItem}>
         &#10005;
       </div>
     </div>

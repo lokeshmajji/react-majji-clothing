@@ -62,16 +62,15 @@ export const addCollection = async (
   console.log("done");
 };
 
-export const getDocuments = async () => {
+export const getCollectionAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
   const querySnaphsot = await getDocs(q);
-  const categoryMap = querySnaphsot.docs.reduce((acc, documentSnapshot) => {
-    const { title, items } = documentSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-  return categoryMap;
+
+  const categoryArray = querySnaphsot.docs.map((documentSnapshot) =>
+    documentSnapshot.data()
+  );
+  return categoryArray;
 };
 export const createUserDocFromAuth = async (userAuth, additionalInfo = {}) => {
   console.log("user auth from firebase", userAuth);

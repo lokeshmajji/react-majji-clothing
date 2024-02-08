@@ -6,11 +6,11 @@ import {
   Body,
 } from "./directory-item.styles.js";
 
-const CategoryItem = ({ category }) => {
+const DirectoryItem = ({ category }) => {
   const { id, title, imageUrl } = category;
   return (
     <DirectoryItemContainer key={id}>
-      <BackgroundImage imageUrl={imageUrl}></BackgroundImage>
+      <BackgroundImage imageurl={imageUrl}></BackgroundImage>
       <Body>
         <h2>{title}</h2>
         <Link to={`/shop/${title}`}>Shop Now</Link>
@@ -19,4 +19,4 @@ const CategoryItem = ({ category }) => {
   );
 };
 
-export default CategoryItem;
+export default DirectoryItem;
