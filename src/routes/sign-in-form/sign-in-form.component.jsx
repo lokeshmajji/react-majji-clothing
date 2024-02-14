@@ -6,8 +6,10 @@ import {
   signInAuthWithEmailAndPassword,
 } from "../../utils/firebase/firebase.util";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import "./sign-in-form.styles.scss";
+import { emailSignInStart, googleSignInStart } from "../../store/user/user.actions";
 
 const defaultSignInProps = {
   email: "",
@@ -15,6 +17,8 @@ const defaultSignInProps = {
 };
 
 const SignInForm = () => {
+
+  const dispatch = useDispatch()
   const [signInFormState, setSignInFormState] = useState(defaultSignInProps);
   const { email, password } = signInFormState;
 
@@ -30,7 +34,8 @@ const SignInForm = () => {
     event.preventDefault();
     const { email, password } = signInFormState;
     try {
-      await signInAuthWithEmailAndPassword(email, password);
+      // await signInAuthWithEmailAndPassword(email, password);
+      dispatch(emailSignInStart(email, password))
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/invalid-credential") {
@@ -41,14 +46,14 @@ const SignInForm = () => {
     }
   };
   const signInWithGoogle = async () => {
-    try {
-      await signInWithGooglePopUp();
-    } catch(error ){
-      if(error.code === 'auth/user-cancelled') {
-        alert('user cancelled google sign-on')
-      }
-    }
-    
+    // try {
+    //   await signInWithGooglePopUp();
+    // } catch(error ){
+    //   if(error.code === 'auth/user-cancelled') {
+    //     alert('user cancelled google sign-on')
+    //   }
+    // }
+    dispatch(googleSignInStart())
   };
   return (
     <div className="sign-in-container">

@@ -2,7 +2,6 @@
 import { initializeApp } from "firebase/app";
 import {
   signInWithPopup,
-  signInWithRedirect,
   getAuth,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
@@ -90,7 +89,7 @@ export const createUserDocFromAuth = async (userAuth, additionalInfo = {}) => {
       console.log("error creating the user", error.message);
     }
   }
-  return userDocRef;
+  return userSnapshot;
 };
 
 export const createUserAuthWithEmailAndPassword = async (email, password) => {
@@ -110,3 +109,16 @@ export const signOutUser = async () => {
 export const onAuthStateChangedListener = (callback) => {
   return onAuthStateChanged(auth, callback);
 };
+
+export const getCurrentUser = ()=> {
+  return new Promise( (resolve, reject) => {
+      const unsubscribe = onAuthStateChanged(
+        auth, 
+        (userAuth) => {
+          unsubscribe();
+          resolve(userAuth)
+        },
+        reject
+      )
+  })
+}

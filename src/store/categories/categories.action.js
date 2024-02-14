@@ -1,4 +1,4 @@
-import { getCollectionAndDocuments } from "../../utils/firebase/firebase.util";
+// import { getCollectionAndDocuments } from "../../utils/firebase/firebase.util";
 import { createAction } from "../../utils/redux/redux.util"
 import { CATEGORY_ACTION_TYPE } from "./categories.type"
 
@@ -19,13 +19,13 @@ export const fetchCategoryArraySuccess = (categoryArray) => {
 }
 
 // create a Thunk
-export const fetchCategoriesAsync = () => async (dispatch) => {
-   dispatch(fetchCategoryArrayStart());
-   try {
-      console.log("fetching categories from thunk")
-      const categoriesArray = await getCollectionAndDocuments();
-      dispatch(fetchCategoryArraySuccess(categoriesArray))
-   } catch(error) {
-      dispatch(fetchCategoryArrayFailed(error))
-   }
-}
+// export const fetchCategoriesAsync = () => async (dispatch) => {
+//    dispatch(fetchCategoryArrayStart());
+//    try {
+//       console.log("fetching categories from thunk")
+//       const categoriesArray = await getCollectionAndDocuments();
+//       dispatch(fetchCategoryArraySuccess(categoriesArray))
+//    } catch(error) {
+//       dispatch(fetchCategoryArrayFailed(error))
+//    }
+// }
